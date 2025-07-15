@@ -1,33 +1,47 @@
 import { useState } from "react";
 import axios from "axios";
 
+
 const Login = () => {
-  const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  async function handleLogin(event){
+ 
+
+  async function handleLogin(event) {
     event.preventDefault();
-    try{
-        const token = await axios.post("http://localhost:3001/api/auth/login",{userName,password})
-        console.log(token);
-        alert("Login Successful")
-    } catch (e){
-        console.log("Login Error", e);
-        alert("Invalid Cred")
+    try {
+      const response = await axios.post(
+        "https://springboot-intern-rjt3.onrender.com/api/auth/login", 
+        {
+          name, 
+          password,
+        }
+      );
+      const token = response.data; 
+      localStorage.setItem("token", token); 
+      alert(token);
+      alert("Login Successful");
+      // navigate("/dashboard"); 
+    } catch (e) {
+      console.log(e);
+      console.error("Login error:", e.response?.data || e.message);
+
+      
     }
-    console.log("Form Submitted");
   }
+
   return (
     <div>
       <h2>Login</h2>
       <div>
         <form onSubmit={handleLogin}>
-          <label htmlFor="userName">User Name</label>
+          <label htmlFor="name">User Name</label>
           <input
-            id="userName"
-            name="userName"
-            value={userName}
+            id="name"
+            name="name"
+            value={name}
             type="text"
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
           <br /> <br />
           <label htmlFor="password">Password</label>
@@ -46,4 +60,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;
