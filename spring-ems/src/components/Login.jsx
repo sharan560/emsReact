@@ -11,7 +11,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "https://springboot-intern-rjt3.onrender.com/api/auth/login", 
+        "http://localhost:3001/api/auth/login", 
         {
           name, 
           password,
@@ -21,7 +21,6 @@ const Login = () => {
       localStorage.setItem("token", token); 
       alert(token);
       alert("Login Successful");
-      // navigate("/dashboard"); 
     } catch (e) {
       console.log(e);
       console.error("Login error:", e.response?.data || e.message);
