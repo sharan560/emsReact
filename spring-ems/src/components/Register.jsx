@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    empId: '',
     name: '',
     email: '',
     password: '',
@@ -34,7 +34,6 @@ const Register = () => {
     try {
       await axios.post('http://localhost:3001/api/auth/register', {
         ...formData,
-        empId: Number(formData.empId),
       });
       alert('Registered Successfully!');
     } catch (err) {
@@ -44,76 +43,89 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card p-4 shadow">
+            <h2 className="text-center mb-4">Register</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Full Name"
+                  required
+                />
+              </div>
 
-        <input type="number" 
-        name="empId" value={formData.empId} 
-        onChange={handleChange} 
-        placeholder="Employee ID" 
-        required />
-        <br /><br />
+              <div className="mb-3">
+                <input
+                  type="text"
+                  name="userName"
+                  value={formData.userName}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Username"
+                  required
+                />
+              </div>
 
-        <input type="text" 
-        name="name" 
-        value={formData.name} 
-        onChange={handleChange} 
-        placeholder="Full Name" 
-        required />
+              <div className="mb-3">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Email"
+                  required
+                />
+              </div>
 
-        <br /><br />
-        
-        <input type="text" 
-        name="userName" 
-        value={formData.userName} 
-        onChange={handleChange} 
-        placeholder="Username" 
-        required />
-        
-        <br /><br />
-        <input type="email" 
-        name="email" 
-        value={formData.email} 
-        onChange={handleChange} 
-        placeholder="Email" 
-        required />
-        
-        <br /><br />
-        <input type="password" 
-        name="password" 
-        value={formData.password} 
-        onChange={handleChange} 
-        placeholder="Password" 
-        required />
-        
-        <br /><br />
+              <div className="mb-3">
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Password"
+                  required
+                />
+              </div>
 
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              value="ROLE_USER"
-              checked={formData.roleNames.includes("ROLE_USER")}
-              onChange={handleRoleCheckboxChange}
-            />
-            ROLE_USER
-          </label>
-          <br />
-          <label>
-            <input
-              type="checkbox"
-              value="ROLE_ADMIN"
-              checked={formData.roleNames.includes("ROLE_ADMIN")}
-              onChange={handleRoleCheckboxChange}
-            />
-            ROLE_ADMIN
-          </label>
+              <div className="mb-3">
+                <label className="form-check-label me-3">
+                  <input
+                    type="checkbox"
+                    className="form-check-input me-1"
+                    value="ROLE_USER"
+                    checked={formData.roleNames.includes("ROLE_USER")}
+                    onChange={handleRoleCheckboxChange}
+                  />
+                  ROLE_USER
+                </label>
+
+                <label className="form-check-label">
+                  <input
+                    type="checkbox"
+                    className="form-check-input me-1"
+                    value="ROLE_ADMIN"
+                    checked={formData.roleNames.includes("ROLE_ADMIN")}
+                    onChange={handleRoleCheckboxChange}
+                  />
+                  ROLE_ADMIN
+                </label>
+              </div>
+
+              <button type="submit" className="btn btn-primary w-100">Register</button>
+            </form>
+          </div>
         </div>
-
-        <br />
-        <button type="submit">Register</button>
-      </form>
+      </div>
     </div>
   );
 };
