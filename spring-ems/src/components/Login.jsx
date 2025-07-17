@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure this import is present in your main entry file as well!
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -23,6 +25,7 @@ const Login = () => {
         localStorage.setItem("role", roles);
         localStorage.setItem("userName", userName);
         alert("Login Successful");
+        navigate("/"); 
       } else {
         alert("Invalid token received");
       }
