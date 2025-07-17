@@ -42,7 +42,7 @@ const AddEmployees = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/auth/register', formData, {
+      await axios.post('https://springboot-intern-rjt3.onrender.com/api/auth/register', formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

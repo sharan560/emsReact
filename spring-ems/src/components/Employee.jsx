@@ -11,7 +11,7 @@ const Employee = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/employee", {
+        const response = await axios.get("https://springboot-intern-rjt3.onrender.com/employee", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

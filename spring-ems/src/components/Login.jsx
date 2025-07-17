@@ -12,7 +12,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/login",
+        "https://springboot-intern-rjt3.onrender.com/api/auth/login",
         { name, password }
       );
 
@@ -71,6 +71,7 @@ const Login = () => {
 
               <button type="submit" className="btn btn-primary w-100">Login</button>
             </form>
+            <p>Already have an Account?<a href="/register">Signup</a></p>
           </div>
         </div>
       </div>
