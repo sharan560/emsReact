@@ -28,7 +28,7 @@ const Employee = () => {
 
   const handleDelete = async (empId) => {
     try {
-      await axios.delete(`http://localhost:3001/employee/${empId}`, {
+      await axios.delete(`https://springboot-intern-rjt3.onrender.com/employee/${empId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +48,7 @@ const Employee = () => {
 
   const handleEditSubmit = async () => {
     try {
-      await axios.put(`http://localhost:3001/employee/${editEmployee.empId}`, editEmployee, {
+      await axios.put(`https://springboot-intern-rjt3.onrender.com/employee/${editEmployee.empId}`, editEmployee, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
